@@ -1,6 +1,6 @@
 #include <unistd.h>
 #include <stdarg.h>
-#include "main.h" /* Assuming main.h contains necessary prototypes/definitions */
+#include "main.h" 
 
 /**
  * _printf - Produces output according to a format.
