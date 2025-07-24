@@ -10,8 +10,8 @@
 */
 int _printf(const char *format, ...)
 {
-  int browse, printed_char = 0;
-  va_list conversion_specifier;
+int browse, printed_char = 0;
+va_list conversion_specifier;
 
   if (format == NULL)
     {
@@ -47,7 +47,6 @@ int _printf(const char *format, ...)
 	      for (str_length = 0; str[str_length] != '\0'; str_length++)
 		{
 		  write (1, &str[str_length], 1);
-
 		}
 	    }
 	  else if (format[browse] == '%')
