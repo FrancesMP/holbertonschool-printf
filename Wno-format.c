@@ -51,9 +51,15 @@ int _printf(const char *format, ...)
 				count++;
 			}
 			else if (*format == 's')
-			{
+			{   
+
 				char *str = va_arg(list_args, char *); /* char* is the same as string */
 				int str_len = 0;
+                /* If the string pointer is NULL, print "(null)". */
+				if (str == NULL)
+				{
+					str = "(null)";
+				}
 
 				while (str[str_len] != '\0') /* calcul str of the string*/
 					str_len++;
