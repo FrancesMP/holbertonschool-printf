@@ -26,7 +26,7 @@ int _printf(const char *format, ...)
 	{
 		if (*format != '%')
 		{
-			write(1, format, 1);
+			my_putchar(*format);    /*write(1,format,1)*/
 			count++;
 		}
 		else
@@ -39,13 +39,13 @@ int _printf(const char *format, ...)
 			}
 			if (*format == '%')
 			{
-				write(1, format, 1);
+				my_putchar(*format);
 				count++;
 			}
 			else if (*format == 'c')
 			{
 				char c = va_arg(list_args, int);
-				write(1, &c, 1);
+				my_putchar(c);                                 /*write(1, &c, 1);*/
 				count++;
 			}
 			else if (*format == 's')
@@ -63,7 +63,7 @@ int _printf(const char *format, ...)
 					str_len++;
 				}
 
-				write(1, str, str_len);
+				my_putchar(str[str_len]);                                          /* write(1, str, str_len); */
 				count += str_len;
 			}
 			else if (*format == 'd' || *format == 'i')
@@ -132,11 +132,11 @@ int _printf(const char *format, ...)
 
 				for (size = 0; num_buffer[size] != '\0'; size++)
 				{
-					; /* Calculate length for write() */
+					my_putchar(num_buffer[size]);            /* write(1, num_buffer, size) */
+				count += size;
 				}
 
-				write(1, num_buffer, size);
-				count += size;
+				
 			}
 		}
 		format++;
