@@ -51,20 +51,21 @@ int _printf(const char *format, ...)
 			else if (*format == 's')
 			{
 				char *str = va_arg(list_args, char *);
-				int str_len = 0;
+				int i = 0;
 
 				if (str == NULL)
 				{
 					str = "(null)";
 				}
 
-				while (str[str_len] != '\0')
+				while (str[i] != '\0')
 				{
-					str_len++;
+					my_putchar(str[i]);                                          /* write(1, str, str_len); */
+				    count ++;
+                    i++;
 				}
 
-				my_putchar(str[str_len]);                                          /* write(1, str, str_len); */
-				count += str_len;
+				
 			}
 			else if (*format == 'd' || *format == 'i')
 			{
@@ -132,11 +133,9 @@ int _printf(const char *format, ...)
 
 				for (size = 0; num_buffer[size] != '\0'; size++)
 				{
-					my_putchar(num_buffer[size]);            /* write(1, num_buffer, size) */
-				count += size;
-				}
-
-				
+				my_putchar(num_buffer[size]);            /* write(1, num_buffer, size) */
+				count ++;
+				}	
 			}
 		}
 		format++;
