@@ -76,7 +76,7 @@ int _printf(const char *format, ...)
                 if (value == 0) {
                     *ptr++ = '0';
                 } else {
-                    // Gère le signe négatif
+                    /*Gère le signe Negatif*/ 
                     if (value < 0) {
                         *ptr++ = '-';                   /*Stocke le signe moins dans le buffer*/ 
                         value = -value;                 /*Convertit en positif pour la conversion*/ 
