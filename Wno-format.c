@@ -70,30 +70,30 @@ int _printf(const char *format, ...)
 				char* start_ptr;
 				char* end_ptr;
 
-                int size = 0;                           //  variable pour la taille
+                int size = 0;                           /*  variable pour la taille */
 
-                                                        // check le cas spécial de 0 EN PREMIER
+                                                        /*check le cas spécial de 0 EN PREMIER*/ 
                 if (value == 0) {
                     *ptr++ = '0';
                 } else {
                     // Gère le signe négatif
                     if (value < 0) {
-                        *ptr++ = '-';                   // Stocke le signe moins dans le buffer
-                        value = -value;                 // Convertit en positif pour la conversion
+                        *ptr++ = '-';                   /*Stocke le signe moins dans le buffer*/ 
+                        value = -value;                 /*Convertit en positif pour la conversion*/ 
                     }
-                                                        // On initialise start_ptr ici, APRÈS le potentiel ajout du signe
-                    start_ptr = ptr;                    // Marque le début des chiffres (après le signe si présent)
+                                                        /*On initialise start_ptr ici, APRÈS le potentiel ajout du signe*/ 
+                    start_ptr = ptr;                    /*Marque le début des chiffres (après le signe si présent)*/
 
-                    temp_value = value; // On peut l'initialiser ici
+                    temp_value = value; /*On peut l'initialiser ici*/ 
 
-                    // Convertit les chiffres en ordre inverse dans le buffer
+                    /*Convertit les chiffres en ordre inverse dans le buffer*/ 
                     while (temp_value > 0) {
-                        *ptr++ = (temp_value % 10) + '0'; // Convertit le chiffre en caractère
+                        *ptr++ = (temp_value % 10) + '0'; /*Convertit le chiffre en caractère*/ 
                         temp_value /= 10;
                     }
 
-                    // Inverse les chiffres dans le buffer pour les mettre dans le bon ordre
-                    end_ptr = ptr - 1;              // Pointeur sur le dernier chiffre écrit (initialisé ici)
+                    /*Inverse les chiffres dans le buffer pour les mettre dans le bon ordre*/ 
+                    end_ptr = ptr - 1;              /*Pointeur sur le dernier chiffre écrit (initialisé ici)*/ 
                     while (start_ptr < end_ptr) {
                         char temp_char = *start_ptr;
                         *start_ptr = *end_ptr;
@@ -102,14 +102,13 @@ int _printf(const char *format, ...)
                         end_ptr--;
                     }
                 }
-                *ptr = '\0'; // Ajoute le terminateur nul à la fin de la chaîne dans le buffer
+                *ptr = '\0'; /*Ajoute le terminateur nul à la fin de la chaîne dans le buffer*/ 
 
-                // Calcule la longueur de la chaîne numérique dans num_buffer
-                for (size = 0; num_buffer[size] != '\0'; size++);           // Ceci est nécessaire pour l'appel à write()
+                /*Calcule la longueur de la chaîne numérique dans num_buffer*/ 
+                for (size = 0; num_buffer[size] != '\0'; size++);           /*Ceci est nécessaire pour l'appel à write()*/ 
 
-                                                        // Écrit la chaîne numérique entière vers la sortie standard
-                write(1, num_buffer, size);
-                count += size;                          // Ajoute la longueur du nombre au total des caractères imprimés
+                                                        /*Écrit la chaîne numérique entière vers la sortie standard*/ 
+                count += size;                          /*Ajoute la longueur du nombre au total des caractères imprimés*/ 
 
               
 
