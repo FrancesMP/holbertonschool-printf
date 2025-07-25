@@ -1,0 +1,124 @@
+.TH MYPRINTF 3 "July 24, 2025" "1.0" "MyPrintf Manual"
+
+.SH NAME
+myprintf \- Prints formatted output to standard output
+
+.SH SYNOPSIS
+.B #include "main.h"
+
+.BI "int _printf(const char *format, ...);"
+
+.SH DESCRIPTION
+The
+.B myprintf()
+function is a custom implementation that writes output to the stdout under the control of a
+.I format
+string. This string tells it how to convert and display the arguments that follow.
+
+.PP
+The
+.I format
+string is just a series of characters. Most characters appear as they are. But a percent sign (
+.B %
+) signals a "conversion specification." This tells
+.B myprintf()
+to look for an argument and display it based on the specifier that follows.
+
+.PP
+Here are the format specifiers currently supported by this implementation:
+.TP
+.B %c
+Takes an
+.B int
+argument (which is treated as an
+.B unsigned char
+), and prints that single character.
+.TP
+.B %s
+Expects a
+.B char *
+argument (a string). It prints characters until it encounters the null byte ('\0'). If the string pointer provided is
+.B NULL
+, the string "(null)" will be printed instead.
+.TP
+.B %d
+.TP
+.B %i
+These convert an
+.B int
+value into its signed decimal form. A leading minus sign is included if the number is negative. This specific version also correctly handles the minimum possible integer value (INT_MIN).
+.TP
+.B %%
+Prints a percent sign ('%'). No argument is consumed or converted for this specifier.
+
+.SH RETURN VALUE
+Upon successful completion, the
+.B myprintf()
+function returns the total number of characters printed to stdout. This count does not include the null-terminating byte for strings.
+.PP
+If the initial
+.I format
+string is
+.B NULL
+, or if an output error occurs during execution, the function returns -1.
+
+.SH EXAMPLES
+Useful examples:
+
+.nf
+myprintf("Hello, I am a C27!\n");
+Output: Hello, I am a C27!
+Returns: 29
+
+myprintf("Printing a char: %c and a percent: %%\n", 'X');
+Output: Printing a char: X and a percent: %
+Returns: 34
+
+myprintf("This is a negative number: %i\n", -272025);
+Output: This is a negative number: -272025
+Returns: 32
+.fi
+
+.SH NOTES
+This custom implementation uses a helper function,
+.B my_putchar
+, for character output, abstracting direct
+.B write
+system calls.
+Unlike the standard
+.B printf
+, this version doesn't support advanced features like field width, precision, flags (e.g., +, #, 0, space), or length modifiers (e.g., h, l).
+Specific format specifiers like
+.B %u
+(unsigned decimal),
+.B %o
+(octal),
+.B %x
+/
+.B %X
+(hexadecimal), and
+.B %p
+(pointer address) aren't implemented yet.
+If you give it a format specifier it doesn't recognize (like
+.B %k
+), it'll simply print "%" followed by that character. This might not be how the standard
+.B printf
+handles things, as it could behave unpredictably in such cases.
+
+.SH SEE ALSO
+.BR printf (3),
+.BR write (2),
+.BR va_start (3),
+.BR va_arg (3),
+.BR va_end (3)
+
+.SH BUGS
+This implementation doesn't have strong buffer overflow protection, so huge inputs or long strings might cause problems. It also doesn't handle output buffering  like  the standard
+.B printf
+.
+
+.SH HISTORY
+Project built in July 2025. The main goal was to get hands-on with C programming, especialy variadic functions and output formatting.
+
+.SH AUTHORS
+Frances, Rebecca, Sedra
