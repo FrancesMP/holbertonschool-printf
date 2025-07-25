@@ -58,3 +58,53 @@ int print_percent(va_list args)
 	write(1, "%", 1);
 	return (1);
 }
+
+
+/**
+ * print_integer - Prints an integer to stdout
+ * @args: The list of variadic arguments
+ *
+ * Return: Number of characters printed
+ */
+int print_integer(va_list args)
+{
+	int n = va_arg(args, int);
+	int num, last_digit, count = 0;
+	char c;
+
+	if (n < 0)
+	{
+		c = '-';
+		write(1, &c, 1);
+		count++;
+		n = -n;
+	}
+
+	num = n;
+
+	if (num == 0)
+	{
+		c = '0';
+		write(1, &c, 1);
+		return (count + 1);
+	}
+
+	char buffer[20];
+	int i = 0;
+
+	while (num > 0)
+	{
+		last_digit = num % 10;
+		buffer[i++] = '0' + last_digit;
+		num /= 10;
+	}
+
+	while (i--)
+	{
+		write(1, &buffer[i], 1);
+		count++;
+	}
+
+	return (count);
+}
+
