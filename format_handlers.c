@@ -1,7 +1,7 @@
-#include "main.h"
+#include "main.h" // Includes stdarg.h and unistd.h via main.h
 
 /**
- * handle_format - Handles format specifiers and prints output.
+ * _handle_format - Handles format specifiers and prints output.
  * @format: The format string.
  * @args: The variadic argument list.
  * @i: Pointer to the current index in the format string.
@@ -11,22 +11,32 @@
 int _handle_format(const char *format, va_list args, int *i)
 {
 	int count = 0;
+	char specifier = format[*i + 1];
 
-	if (format[*i + 1] == 'c')
-		count += print_char(args);
-	else if (format[*i + 1] == 's')
-		count += print_string(args);
-	else if (format[*i + 1] == '%')
-		count += print_percent(args);
-	else if (format[*i + 1] == 'd' || format[*i + 1] == 'i')
-		count += print_integer(args);
-	else
+	if (specifier == 'c')
 	{
-		_putchar(format[*i]);
-		_putchar(format[*i + 1]);
+		count += print_char(args);
+	}
+	else if (specifier == 's')
+	{
+		count += print_string(args);
+	}
+	else if (specifier == '%')
+	{
+		count += print_percent(args);
+	}
+	else if (specifier == 'd' || specifier == 'i')
+	{
+		count += print_integer(args);
+	}
+	else 
+	{
+		_putchar('%');       
+		_putchar(specifier); 
 		count += 2;
 	}
 
-	*i += 2;
+	(*i)++;
+
 	return (count);
 }
