@@ -38,7 +38,7 @@ To run this project, you will need:
 
 ```bash
   git checkout -b branch_name
-  git push
+  git push --set-upstream origin branch_name
 ``` 
 
 #### 3. Compile
@@ -46,6 +46,7 @@ To run this project, you will need:
 ```bash
    gcc -Wall -Werror -Wextra -pedantic -std=gnu89 -Wno-format *.c
 ``` 
+
 ## Testing ```_printf```
 
 To test the functionality of ```_printf``` and compare its output with the standard ```printf```, after compiling you can run the following test program:
