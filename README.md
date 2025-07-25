@@ -6,12 +6,16 @@ A simplified reimplementation of the ```printf``` function in C.
 
 ## Features
 
+This project is a reimplementation of the ```printf``` function in C.
+Our current implementation, ```_printf``` supports the following format specifiers:
+
 ```_printf```
 - ```%c```: Print a single character
 - ```%s```: Print a string
-- ```%%```: Print a literal percent sign
 - ```%d```: Print an integer
 - ```%i```: Print an integer
+- ```%%```: Print a literal percent sign
+
 
 ## Requirements
 
