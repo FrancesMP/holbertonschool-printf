@@ -66,15 +66,19 @@ string is
 Useful examples:
 
 .nf
-myprintf("Hello, I am a C27!\n");
+_printf("Hello, I am a C27!\n");
 Output: Hello, I am a C27!
 Returns: 29
 
-myprintf("Printing a char: %c and a percent: %%\n", 'X');
+_printf("Printing a char: %c and a percent: %%\n", 'X');
 Output: Printing a char: X and a percent: %
 Returns: 34
+``
+_printf("Testing zero: %d\n", 0);
+Output: Testing zero: 0
+Returns: 14
 
-myprintf("This is a negative number: %i\n", -272025);
+_printf("This is a negative number: %i\n", -272025);
 Output: This is a negative number: -272025
 Returns: 32
 .fi
